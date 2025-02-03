@@ -2,6 +2,7 @@ package com.sesi.projeto.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -9,26 +10,36 @@ import java.util.UUID;
 public class Produto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "produto_id")
+    private Long id;
     private String nome;
     private String descricao;
     private double preco;
 
-    public Produto(UUID id, String nome, String descricao, double preco) {
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "produto_categoria",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    private List<Categoria> categorias;
+
+    public Produto(Long id, String nome, String descricao, double preco, List<Categoria> categorias) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
+        this.categorias = categorias;
     }
 
     public Produto() {}
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,4 +66,9 @@ public class Produto {
     public void setPreco(double preco) {
         this.preco = preco;
     }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+    public void setCategorias(List<Categoria> categorias) {}
 }
