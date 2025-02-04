@@ -11,7 +11,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "cliente_id")
     private Long id;
     private String nome;
     private String email;
@@ -22,12 +22,12 @@ public class Usuario {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_is"),
+            joinColumns = @JoinColumn(name = "cliente_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
 
-    @OneToMany
+    @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos;
 
     public Usuario(String nome, Long id, String email, String senha, String telefone, Set<Role> roles, String imgUrl, List<Pedido> pedidos) {

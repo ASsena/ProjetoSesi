@@ -2,6 +2,9 @@ package com.sesi.projeto.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "categorias")
 public class Categoria {
@@ -11,6 +14,8 @@ public class Categoria {
     @Column(name = "categoria_id")
     private Long id;
     private String nome;
+    @ManyToMany(mappedBy = "categorias")
+    private Set<Produto> produtos = new HashSet<Produto>();
 
     public Categoria(Long id, String nome) {
         this.id = id;

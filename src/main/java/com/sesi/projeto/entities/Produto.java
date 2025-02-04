@@ -2,7 +2,9 @@ package com.sesi.projeto.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -23,9 +25,9 @@ public class Produto {
             joinColumns = @JoinColumn(name = "produto_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_id")
     )
-    private List<Categoria> categorias;
+    private Set<Categoria> categorias = new HashSet<>();
 
-    public Produto(Long id, String nome, String descricao, double preco, List<Categoria> categorias) {
+    public Produto(Long id, String nome, String descricao, double preco, Set<Categoria> categorias) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -67,8 +69,8 @@ public class Produto {
         this.preco = preco;
     }
 
-    public List<Categoria> getCategorias() {
+    public Set<Categoria> getCategorias() {
         return categorias;
     }
-    public void setCategorias(List<Categoria> categorias) {}
+    public void setCategorias(Set<Categoria> categorias) {}
 }

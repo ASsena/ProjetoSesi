@@ -15,10 +15,16 @@ public class Pedido {
     @Enumerated(EnumType.ORDINAL)
     private StatusDoPedido status;
     @OneToOne
-    private Pedido produto;
+    private Pedido pedido;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Usuario cliente;
 
-    public Pedido(Pedido produto, StatusDoPedido status, Instant momento, Long id) {
-        this.produto = produto;
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private Pagamento pagamento;
+
+    public Pedido(Pedido pedido, StatusDoPedido status, Instant momento, Long id) {
+        this.pedido = pedido;
         this.status = status;
         this.momento = momento;
         this.id = id;
@@ -49,11 +55,11 @@ public class Pedido {
         this.status = status;
     }
 
-    public Pedido getProduto() {
-        return produto;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setProduto(Pedido produto) {
-        this.produto = produto;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

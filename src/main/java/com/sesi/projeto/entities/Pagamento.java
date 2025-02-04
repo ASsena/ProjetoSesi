@@ -12,10 +12,15 @@ public class Pagamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Instant momento;
+    @OneToOne
+    @MapsId
+    private Pedido pedido;
 
-    public Pagamento(Instant momento, Long id) {
+
+    public Pagamento(Instant momento, Long id, Pedido pedido) {
         this.momento = momento;
         this.id = id;
+        this.pedido = pedido;
     }
     public Pagamento() {}
 
@@ -34,4 +39,8 @@ public class Pagamento {
     public void setMomento(Instant momento) {
         this.momento = momento;
     }
+    public Pedido getPedido() {
+        return pedido;
+    }
+    public void setPedido(Pedido pedido) {}
 }
