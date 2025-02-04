@@ -16,10 +16,8 @@ public class Pagamento {
     @MapsId
     private Pedido pedido;
 
-
-    public Pagamento(Instant momento, Long id, Pedido pedido) {
+    public Pagamento(Instant momento, Pedido pedido) {
         this.momento = momento;
-        this.id = id;
         this.pedido = pedido;
     }
     public Pagamento() {}

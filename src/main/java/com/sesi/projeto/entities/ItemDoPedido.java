@@ -1,18 +1,21 @@
 package com.sesi.projeto.entities;
 
 import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "item_pedido")
 public class ItemDoPedido {
 
     @EmbeddedId
-    private ItemDoPedidoId itemDoPedido;
+    private ItemDoPedidoId id = new ItemDoPedidoId();
     private int quantidade;
     private Double preco;
 
-    public ItemDoPedido(int quantidade, Double preco , ItemDoPedidoId itemDoPedido) {
+    public ItemDoPedido(int quantidade, Double preco ) {
         this.quantidade = quantidade;
         this.preco = preco;
-        this.itemDoPedido = itemDoPedido;
     }
     public ItemDoPedido() {}
 
@@ -33,7 +36,13 @@ public class ItemDoPedido {
         this.preco = preco;
     }
     public ItemDoPedidoId getItemDoPedido() {
-        return itemDoPedido;
+        return id;
     }
-    public void setItemDoPedido(ItemDoPedidoId itemDoPedido) {}
+    public void setItemDoPedido(ItemDoPedidoId itemDoPedido) {
+         this.id = itemDoPedido;
+    }
+
+    public Produto getProduto() {
+        return id.getIdProduto();
+    }
 }

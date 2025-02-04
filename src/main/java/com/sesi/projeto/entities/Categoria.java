@@ -17,9 +17,10 @@ public class Categoria {
     @ManyToMany(mappedBy = "categorias")
     private Set<Produto> produtos = new HashSet<Produto>();
 
-    public Categoria(Long id, String nome) {
+    public Categoria(Long id, String nome, Set<Produto> produtos) {
         this.id = id;
         this.nome = nome;
+        this.produtos = produtos;
     }
     public Categoria() {}
 
@@ -38,4 +39,8 @@ public class Categoria {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    public Set<Produto> getProdutos() {
+        return produtos;
+    }
+    public void setProdutos(Set<Produto> produtos) {}
 }

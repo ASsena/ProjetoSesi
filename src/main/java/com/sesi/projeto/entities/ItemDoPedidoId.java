@@ -1,34 +1,32 @@
 package com.sesi.projeto.entities;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Embeddable
 public class ItemDoPedidoId {
 
-    private Long idProduto;
-    private Long idPedido;
+    @OneToOne
+    @JoinColumn(name = "produto_id")
+    private Produto idProduto;
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido idPedido;
 
-    public ItemDoPedidoId(Long idProduto, Long idPedido) {
-        this.idProduto = idProduto;
-        this.idPedido = idPedido;
-    }
-
-    public ItemDoPedidoId() {
-    }
-
-    public Long getIdProduto() {
+    public Produto getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(Long idProduto) {
+    public void setIdProduto(Produto idProduto) {
         this.idProduto = idProduto;
     }
 
-    public Long getIdPedido() {
+    public Pedido getIdPedido() {
         return idPedido;
     }
 
-    public void setIdPedido(Long idPedido) {
+    public void setIdPedido(Pedido idPedido) {
         this.idPedido = idPedido;
     }
 }

@@ -27,12 +27,11 @@ public class Produto {
     )
     private Set<Categoria> categorias = new HashSet<>();
 
-    public Produto(Long id, String nome, String descricao, double preco, Set<Categoria> categorias) {
+    public Produto(Long id, String nome, String descricao, double preco) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
-        this.categorias = categorias;
     }
 
     public Produto() {}
